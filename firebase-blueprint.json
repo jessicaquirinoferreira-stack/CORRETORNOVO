@@ -1,0 +1,238 @@
+{
+  "entities": {
+    "Property": {
+      "title": "Property",
+      "description": "Real estate listing for Daniel Pacheco Marcelino consulting",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the property"
+        },
+        "code": {
+          "type": "string",
+          "description": "Property reference code"
+        },
+        "title": {
+          "type": "string",
+          "description": "Property display title"
+        },
+        "headline": {
+          "type": "string",
+          "description": "Short headline"
+        },
+        "description": {
+          "type": "string",
+          "description": "Full description of the property"
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "Short summary description"
+        },
+        "city": {
+          "type": "string",
+          "description": "City where the property is located"
+        },
+        "neighborhood": {
+          "type": "string",
+          "description": "Neighborhood"
+        },
+        "state": {
+          "type": "string",
+          "description": "State (e.g. SC)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of property (Apartamento, Casa, Lote/Terreno, Cobertura, Sala Comercial)"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status (Pronto, Na planta, Em obras, Loteamento)"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price in BRL"
+        },
+        "priceFormatted": {
+          "type": "string",
+          "description": "Formatted price string"
+        },
+        "areaM2": {
+          "type": "number",
+          "description": "Total area in square meters"
+        },
+        "bedrooms": {
+          "type": "number",
+          "description": "Number of bedrooms"
+        },
+        "suites": {
+          "type": "number",
+          "description": "Number of suites"
+        },
+        "bathrooms": {
+          "type": "number",
+          "description": "Number of bathrooms"
+        },
+        "garageSpaces": {
+          "type": "number",
+          "description": "Number of parking spaces"
+        },
+        "developer": {
+          "type": "string",
+          "description": "Developer / Construtora name"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether the property is featured on the homepage"
+        },
+        "bankFinancing": {
+          "type": "boolean",
+          "description": "Bank financing eligibility flag"
+        },
+        "directFinancing": {
+          "type": "boolean",
+          "description": "Direct financing option available"
+        },
+        "images": {
+          "type": "array",
+          "description": "List of photo URLs"
+        },
+        "features": {
+          "type": "array",
+          "description": "List of features and amenities"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp in milliseconds"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Update timestamp in milliseconds"
+        }
+      },
+      "required": ["id", "title", "city", "neighborhood", "type", "status"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global website configuration and contact details",
+      "type": "object",
+      "properties": {
+        "siteName": {
+          "type": "string",
+          "description": "Website title"
+        },
+        "creci": {
+          "type": "string",
+          "description": "CRECI registration number"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number"
+        },
+        "whatsapp": {
+          "type": "string",
+          "description": "WhatsApp number"
+        },
+        "email": {
+          "type": "string",
+          "description": "Contact email"
+        },
+        "address": {
+          "type": "string",
+          "description": "Office address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "state": {
+          "type": "string",
+          "description": "State"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle"
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn profile"
+        },
+        "heroTitle": {
+          "type": "string",
+          "description": "Hero title on homepage"
+        },
+        "heroSubtitle": {
+          "type": "string",
+          "description": "Hero subtitle on homepage"
+        },
+        "aboutText": {
+          "type": "string",
+          "description": "About section description"
+        },
+        "primaryColor": {
+          "type": "string",
+          "description": "Primary theme color"
+        }
+      },
+      "required": ["siteName", "creci", "whatsapp"]
+    },
+    "LandingPage": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique Landing Page ID" },
+        "slug": { "type": "string", "description": "URL slug for ads and sharing" },
+        "propertyId": { "type": "string", "description": "Linked property ID" },
+        "propertyCode": { "type": "string", "description": "Linked property code" },
+        "title": { "type": "string", "description": "Landing page title" },
+        "heroHeadline": { "type": "string", "description": "High conversion hero headline" },
+        "heroSubheadline": { "type": "string", "description": "Hero subheadline" },
+        "badgeText": { "type": "string", "description": "Urgency / exclusivity badge" },
+        "themeStyle": { "type": "string", "description": "Visual theme style" },
+        "targetAudience": { "type": "string", "description": "Target audience persona" },
+        "customPriceDisplay": { "type": "string", "description": "Custom price or payment condition" },
+        "customWhatsappMessage": { "type": "string", "description": "Custom WhatsApp prefilled message" },
+        "videoUrl": { "type": "string", "description": "Virtual tour or presentation video URL" },
+        "customBenefits": { "type": "array", "description": "Value pillars" },
+        "locationHighlights": { "type": "array", "description": "Location highlights" },
+        "financingPitch": { "type": "string", "description": "Financing condition details" },
+        "urgencyText": { "type": "string", "description": "Urgency notification" },
+        "showMortgageSimulator": { "type": "boolean", "description": "Simulator flag" },
+        "active": { "type": "boolean", "description": "Active status" },
+        "createdAt": { "type": "number", "description": "Creation timestamp" },
+        "updatedAt": { "type": "number", "description": "Update timestamp" }
+      },
+      "required": ["id", "slug", "propertyId", "title", "heroHeadline"]
+    },
+    "PropertyGallery": {
+      "type": "object",
+      "properties": {
+        "propertyId": { "type": "string", "description": "Property ID reference" },
+        "images": { "type": "array", "description": "Full array of image URLs or WebP data URLs" },
+        "updatedAt": { "type": "number", "description": "Timestamp" }
+      },
+      "required": ["propertyId", "images"]
+    }
+  },
+  "firestore": {
+    "/properties/{propertyId}": {
+      "schema": "Property",
+      "description": "Collection of real estate listings for public viewing and admin management"
+    },
+    "/settings/{settingsId}": {
+      "schema": "SiteSettings",
+      "description": "Global site settings document"
+    },
+    "/landing_pages/{landingPageId}": {
+      "schema": "LandingPage",
+      "description": "High-converting landing pages generated for properties and marketing campaigns"
+    },
+    "/property_photos/{photoId}": {
+      "schema": "PropertyPhoto",
+      "description": "Individual high-definition property photos stored separately to prevent exceeding 1MB document limit"
+    },
+    "/property_galleries/{galleryId}": {
+      "schema": "PropertyGallery",
+      "description": "Extended photo galleries for properties with large photo sets"
+    }
+  }
+}

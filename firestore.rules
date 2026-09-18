@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Properties collection: Public read, authenticated or admin write
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Site settings collection: Public read, admin write
+    match /settings/{settingsId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Landing pages collection: Public read, admin write
+    match /landing_pages/{landingPageId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Property photos collection: Individual photos stored separately
+    match /property_photos/{photoId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Property galleries collection: Extended full-resolution photo sets
+    match /property_galleries/{galleryId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

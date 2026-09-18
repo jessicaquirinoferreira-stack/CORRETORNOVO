@@ -1,0 +1,6 @@
+{
+  "name": "Daniel Pacheco | Consultoria Imobiliária",
+  "description": "Consultoria imobiliária premium para apartamentos na planta, lançamentos e imóveis prontos no Sul de Santa Catarina.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
