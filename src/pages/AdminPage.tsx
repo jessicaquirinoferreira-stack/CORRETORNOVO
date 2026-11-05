@@ -1240,6 +1240,27 @@ export const AdminPage: React.FC<AdminPageProps> = ({
                       <td className="py-3.5 px-3 text-right">
                         <div className="flex items-center justify-end gap-1.5">
                           <button
+                            onClick={() => {
+                              const updated = { ...prop, isArchived: !prop.isArchived, publicationStatus: prop.isArchived ? 'published' : 'archived' };
+                              saveProperty(updated);
+                            }}
+                            className={`p-2 rounded-xl cursor-pointer transition-colors ${prop.isArchived ? 'bg-orange-100 text-orange-600' : 'bg-[#F7F3EB] text-[#5A5A5A] hover:bg-orange-100 hover:text-orange-600'}`}
+                            title={prop.isArchived ? "Restaurar Anúncio" : "Arquivar Anúncio"}
+                          >
+                            <EyeOff className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              const newCode = Math.floor(100000 + Math.random() * 900000).toString();
+                              const duplicated = { ...prop, id: `prop-${newCode}`, code: newCode, title: `${prop.title} (Cópia)` };
+                              saveProperty(duplicated);
+                            }}
+                            className="p-2 rounded-xl bg-[#F7F3EB] hover:bg-[#C9A227]/20 text-[#5A5A5A] hover:text-[#C9A227] cursor-pointer transition-colors"
+                            title="Duplicar Imóvel"
+                          >
+                            <Layers className="w-4 h-4" />
+                          </button>
+                          <button
                             onClick={() => onSelectProperty(prop)}
                             className="p-2 rounded-xl bg-[#F7F3EB] hover:bg-[#EAE4D8] text-[#5A5A5A] hover:text-[#C9A227] cursor-pointer transition-colors"
                             title="Visualizar Página do Imóvel"
@@ -1983,19 +2004,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                       <label className="text-xs font-semibold text-[#111111] mb-1 block">Cidade *</label>
-                      <select
-                        value={editingProperty.city || 'Criciúma'}
+                      <input
+                        type="text"
+                        placeholder="Digite a cidade..."
+                        value={editingProperty.city || ''}
                         onChange={(e) => setEditingProperty({ ...editingProperty, city: e.target.value })}
-                        className="w-full bg-[#F7F3EB] border border-[#E5E0D8] text-xs text-[#111111] rounded-xl p-3 outline-none"
-                      >
-                        <option value="Criciúma">Criciúma</option>
-                        <option value="Balneário Rincão">Balneário Rincão</option>
-                        <option value="Içara">Içara</option>
-                        <option value="Nova Veneza">Nova Veneza</option>
-                        <option value="Cocal do Sul">Cocal do Sul</option>
-                        <option value="Forquilhinha">Forquilhinha</option>
-                        <option value="Morro da Fumaça">Morro da Fumaça</option>
-                      </select>
+                        className="w-full bg-[#F7F3EB] border border-[#E5E0D8] focus:border-[#C9A227] text-xs text-[#111111] rounded-xl p-3 outline-none"
+                      />
                     </div>
 
                     <div>
