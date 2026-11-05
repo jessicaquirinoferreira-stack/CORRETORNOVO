@@ -341,7 +341,7 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
       {/* =========================================================================
           2. HERO SECTION (Split-screen 2 colunas com navegação superior)
          ========================================================================= */}
-      <section id="hero-detail" className="pt-24 sm:pt-28 pb-12 bg-[#F7F3EB] border-b border-[#E5E0D8]">
+      <section id="hero-detail" className="pt-24 sm:pt-28 pb-12 bg-[#0E0E0E] border-b border-white/10 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           
           {/* Top Breadcrumb & Share Row */}
@@ -349,7 +349,7 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
             <button
               id="detail-back-btn"
               onClick={onBack}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFFFFF] border border-[#E5E0D8] hover:border-[#C9A227] text-xs font-semibold text-[#111111] hover:text-[#C9A227] transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-[#C9A227] text-xs font-semibold text-white hover:text-[#C9A227] transition-all cursor-pointer shadow-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Voltar ao Portfólio</span>
@@ -358,14 +358,14 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={handleShare}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#FFFFFF] border border-[#E5E0D8] hover:border-[#C9A227] text-[#5A5A5A] hover:text-[#111111] transition-colors text-xs cursor-pointer shadow-sm"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-[#C9A227] text-[#A0A0A0] hover:text-white transition-colors text-xs cursor-pointer shadow-sm"
                 title="Compartilhar imóvel"
               >
                 <Share2 className="w-4 h-4" />
                 <span>Compartilhar</span>
               </button>
               {copied && (
-                <span className="text-[11px] text-[#1F8A4C] font-semibold animate-pulse">Link copiado!</span>
+                <span className="text-[11px] text-[#4ADE80] font-semibold animate-pulse">Link copiado!</span>
               )}
             </div>
           </div>
@@ -386,12 +386,12 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
                       : 'EMPREENDIMENTO OFICIAL — DANIEL PACHECO'}
                   </span>
                 </span>
-                <span className="text-[#E5E0D8]">•</span>
-                <span className="text-[11px] font-mono text-[#5A5A5A]">Cód. {property.code}</span>
+                <span className="text-white/20">•</span>
+                <span className="text-[11px] font-mono text-[#A0A0A0]">Cód. {property.code}</span>
               </div>
 
               {/* Main Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#111111] tracking-tight leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15]">
                 {property.title}
               </h1>
 
@@ -401,24 +401,24 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
               </p>
 
               {/* Quick Info Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-[#E5E0D8]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-white/10">
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-[#5A5A5A] block">Valor</span>
-                  <div className="text-xs sm:text-sm font-bold text-[#111111] truncate">
+                  <span className="text-[10px] uppercase tracking-wider text-[#A0A0A0] block">Valor</span>
+                  <div className="text-xs sm:text-sm font-bold text-[#C9A227] font-serif tabular-nums truncate">
                     {property.priceFormatted || formatCurrency(property.price)}
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-[#5A5A5A] block">Localização</span>
-                  <div className="flex items-center gap-1.5 text-xs text-[#111111] font-medium">
+                  <span className="text-[10px] uppercase tracking-wider text-[#A0A0A0] block">Localização</span>
+                  <div className="flex items-center gap-1.5 text-xs text-white font-medium">
                     <MapPin className="w-3.5 h-3.5 text-[#C9A227] shrink-0" />
                     <span className="truncate">{property.neighborhood} · {property.city}</span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-[#5A5A5A] block">Status da Obra</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#A0A0A0] block">Status da Obra</span>
                   <div className="flex items-center gap-1.5 text-xs font-semibold">
                     <span className={`w-2 h-2 rounded-full ${badgeStyle.dot} animate-pulse`} />
                     <span className={badgeStyle.text}>{property.status}</span>
@@ -426,8 +426,8 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-[#5A5A5A] block">Previsão / Entrega</span>
-                  <div className="flex items-center gap-1.5 text-xs text-[#111111] font-medium">
+                  <span className="text-[10px] uppercase tracking-wider text-[#A0A0A0] block">Previsão / Entrega</span>
+                  <div className="flex items-center gap-1.5 text-xs text-white font-medium">
                     <Calendar className="w-3.5 h-3.5 text-[#C9A227] shrink-0" />
                     <span>{property.deliveryYear || (property.status === 'Pronto' ? 'Pronto para Morar' : 'Consulte')}</span>
                   </div>

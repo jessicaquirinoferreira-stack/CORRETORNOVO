@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Bot,
   Sparkles,
   X,
   Send,
@@ -19,6 +18,9 @@ import {
 } from 'lucide-react';
 import { SiteSettings, Property } from '../types';
 import { createWhatsAppUrl } from '../utils/formatters';
+import helenaAvatarImg from '../assets/images/assistant_helena_portrait_1793894728807.jpg';
+
+const HELENA_AVATAR = helenaAvatarImg || '/images/assistant_helena_portrait.jpg';
 
 interface AIAssistantFloatingProps {
   settings: SiteSettings;
@@ -60,7 +62,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
   
   const defaultWhatsAppUrl = createWhatsAppUrl(
     settings.whatsapp || '5548998001744',
-    'Olá Daniel Pacheco! Falei com a sua Assistente IA no site e gostaria de um atendimento direto com você.'
+    'Olá Daniel Pacheco! Conversei com a Helena no site e gostaria de um atendimento direto com você.'
   );
 
   const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
@@ -72,7 +74,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
     {
       id: 'msg-welcome',
       sender: 'ai',
-      text: `Olá! Sou a Assistente Virtual de **${realtorName}** (${realtorRole} • ${creci} • ${cnai}).\n\nAtuamos em toda a região da **AMREC** no Sul de Santa Catarina. Como posso te ajudar hoje com terrenos, lançamentos na planta ou avaliações periciais?`,
+      text: `Olá! Sou a Helena, consultora de atendimento de **${realtorName}** (${realtorRole} • ${creci} • ${cnai}).\n\nAtuamos em toda a região da **AMREC** no Sul de Santa Catarina. Como posso te ajudar hoje com terrenos, loteamentos, lançamentos na planta ou avaliações periciais?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       actionButtons: [
         {
@@ -305,7 +307,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
     // Default Fallback: helpful overview + directing to socials & WhatsApp
     const dynamicWaUrl = createWhatsAppUrl(
       settings.whatsapp || '5548998001744',
-      `Olá Daniel Pacheco! Estava tirando dúvidas com sua IA sobre "${query}" e gostaria de sua ajuda.`
+      `Olá Daniel Pacheco! Conversei com a Helena no site sobre "${query}" e gostaria do seu atendimento direto.`
     );
 
     return {
@@ -313,7 +315,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
         `Para um atendimento sob medida e detalhes precisos sobre "${query}", recomendo falar diretamente com ele pelo WhatsApp ou conferir os conteúdos recentes no Instagram oficial!`,
       actionButtons: [
         { label: 'Falar com Daniel no WhatsApp', type: 'whatsapp', url: dynamicWaUrl },
-        { label: 'Acessar Instagram @danielpacheco.imoveis', type: 'instagram', url: instagramUrl },
+        { label: 'Acessar Instagram @corretordanielpacheco', type: 'instagram', url: instagramUrl },
         { label: 'Ver Avaliações no Google', type: 'google', url: googleSearchUrl },
       ],
     };
@@ -334,7 +336,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
     setInputText('');
     setIsTyping(true);
 
-    // Simulate natural AI thinking delay
+    // Simulate natural thinking delay
     setTimeout(() => {
       const { text, actionButtons } = generateAIResponse(query);
       const aiReply: ChatMessage = {
@@ -361,7 +363,7 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
       {
         id: 'msg-welcome-reset',
         sender: 'ai',
-        text: `Chat reiniciado! Olá, como posso te ajudar sobre os imóveis e o trabalho do corretor **${realtorName}**?`,
+        text: `Chat reiniciado! Olá, sou a Helena. Como posso te ajudar sobre os imóveis e o trabalho do corretor **${realtorName}**?`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         actionButtons: [
           { label: 'Falar no WhatsApp', type: 'whatsapp', url: defaultWhatsAppUrl },
@@ -373,30 +375,34 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
 
   return (
     <div className="fixed bottom-12 sm:bottom-14 left-4 sm:left-6 z-40 flex flex-col items-start gap-3 pointer-events-auto select-none">
-      {/* Floating AI Button (Left Side, Non-Intrusive) */}
+      {/* Floating Concierge Button (Left Side, Non-Intrusive) */}
       {!isOpen && (
         <div className="flex items-center gap-2.5">
           <button
-            id="ai-floating-trigger-btn"
+            id="helena-floating-trigger-btn"
             onClick={() => {
               setIsOpen(true);
               setShowTooltip(false);
             }}
-            className="relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#222222] border border-[#C9A227]/60 text-[#FFFFFF] shadow-xl hover:border-[#C9A227] transition-all group cursor-pointer"
-            title="Abrir Assistente Virtual de Imóveis"
+            className="relative flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-[#0A0A0A] hover:bg-[#1A1A1A] border border-[#C9A227]/70 text-[#FFFFFF] shadow-2xl hover:border-[#C9A227] hover:scale-105 active:scale-95 transition-all group cursor-pointer"
+            title="Falar com Helena · Atendimento Daniel Pacheco"
           >
-            {/* Glowing AI Icon */}
-            <div className="relative w-7 h-7 rounded-full bg-[#C9A227] flex items-center justify-center text-[#0A0A0A] shadow-md group-hover:scale-110 transition-transform">
-              <Bot className="w-4 h-4" />
-              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-[#1F8A4C] border border-[#0A0A0A] rounded-full" />
+            {/* Real Human Portrait Avatar */}
+            <div className="relative w-9 h-9 rounded-full ring-2 ring-[#C9A227] overflow-hidden shrink-0 shadow-md">
+              <img 
+                src={HELENA_AVATAR} 
+                alt="Helena - Consultora de Atendimento" 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#1F8A4C] border-2 border-[#0A0A0A] rounded-full" />
             </div>
 
-            <div className="text-left hidden sm:block">
-              <span className="text-[11px] font-bold text-[#FFFFFF] block leading-none">
-                Assistente IA
+            <div className="text-left hidden sm:block pr-1">
+              <span className="text-[12px] font-bold text-[#FFFFFF] block leading-none">
+                Helena · Atendimento
               </span>
-              <span className="text-[9px] text-[#C9A227] font-semibold tracking-wider uppercase block mt-0.5">
-                Imóveis & Loteamentos
+              <span className="text-[9px] text-[#C9A227] font-semibold tracking-wider uppercase block mt-1">
+                Consultoria Online
               </span>
             </div>
 
@@ -414,23 +420,26 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
           {/* Header */}
           <div className="p-4 bg-[#F7F3EB] border-b border-[#E5E0D8] flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-2xl bg-[#0A0A0A] p-0.5 shadow-md flex items-center justify-center">
-                <div className="w-full h-full bg-[#0A0A0A] rounded-[14px] flex items-center justify-center text-[#C9A227]">
-                  <Bot className="w-5 h-5" />
-                </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#1F8A4C] border-2 border-[#FFFFFF] rounded-full" />
+              <div className="relative w-11 h-11 rounded-2xl ring-2 ring-[#C9A227] overflow-hidden shadow-md shrink-0">
+                <img 
+                  src={HELENA_AVATAR} 
+                  alt="Helena - Consultora de Atendimento" 
+                  className="w-full h-full object-cover" 
+                />
+                <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#1F8A4C] border-2 border-white rounded-full" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <h4 className="text-sm font-bold font-serif-luxury text-[#111111]">
-                    Assistente Daniel Pacheco
+                    Helena · Atendimento
                   </h4>
-                  <span className="px-1.5 py-0.5 rounded bg-[#C9A227]/20 text-[#0A0A0A] text-[9px] font-bold border border-[#C9A227]/40">
-                    IA Oficial
+                  <span className="px-2 py-0.5 rounded-full bg-[#1F8A4C]/15 text-[#1F8A4C] text-[9px] font-bold border border-[#1F8A4C]/30 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1F8A4C] animate-pulse" />
+                    Online
                   </span>
                 </div>
                 <p className="text-[10px] text-[#5A5A5A]">
-                  {creci} • {cnai}
+                  Daniel Pacheco • {creci} • {cnai}
                 </p>
               </div>
             </div>
@@ -565,9 +574,11 @@ export const AIAssistantFloating: React.FC<AIAssistantFloatingProps> = ({
 
             {/* Typing Indicator */}
             {isTyping && (
-              <div className="flex items-center gap-2 p-3 bg-[#F7F3EB] border border-[#E5E0D8] rounded-2xl rounded-tl-none w-fit text-[#5A5A5A] text-xs">
-                <Bot className="w-3.5 h-3.5 text-[#C9A227] animate-spin" />
-                <span className="text-[11px]">Assistente digitando resposta...</span>
+              <div className="flex items-center gap-2 p-2.5 bg-[#F7F3EB] border border-[#E5E0D8] rounded-2xl rounded-tl-none w-fit text-[#5A5A5A] text-xs shadow-xs">
+                <div className="w-5 h-5 rounded-full overflow-hidden ring-1 ring-[#C9A227] shrink-0">
+                  <img src={HELENA_AVATAR} alt="Helena" className="w-full h-full object-cover" />
+                </div>
+                <span className="text-[11px] font-medium text-[#111111]">Helena digitando resposta...</span>
               </div>
             )}
 

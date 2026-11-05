@@ -29,10 +29,6 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
     'Daniel Pacheco Corretor de Imoveis CRECI 38813 Criciuma SC'
   )}`;
 
-  const googleMapsSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(
-    'Daniel Pacheco Consultoria Imobiliaria Criciuma SC'
-  )}`;
-
   const whatsappUrl = createWhatsAppUrl(
     settings.whatsapp || '5548998001744',
     'Olá Daniel Pacheco! Vi seu Certificado 5 Estrelas no Google e gostaria de iniciar um atendimento imobiliário.'
@@ -44,7 +40,7 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
   const verifiedReviews = [
     {
       author: 'Eduardo M. Siqueira',
-      role: 'Comprador • Apartamento Centro Criciúma',
+      role: 'Comprador · Apartamento Centro Criciúma',
       date: 'Há 3 semanas',
       rating: 5,
       comment:
@@ -53,7 +49,7 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
     },
     {
       author: 'Mariana & Roberto Becker',
-      role: 'Investidores • Lançamento Balneário Rincão',
+      role: 'Investidores · Lançamento Balneário Rincão',
       date: 'Há 1 mês',
       rating: 5,
       comment:
@@ -62,7 +58,7 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
     },
     {
       author: 'Lucas Fontanella',
-      role: 'Primeiro Imóvel • Içara',
+      role: 'Primeiro Imóvel · Içara',
       date: 'Há 2 meses',
       rating: 5,
       comment:
@@ -72,20 +68,20 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
   ];
 
   return (
-    <section id="certificado-google" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
-      {/* Container Frame with Certificate Luxury Border & Security Watermark */}
-      <div className="relative rounded-3xl p-1 bg-[#E5E0D8] shadow-lg">
-        <div className="relative bg-[#FFFFFF] rounded-[22px] p-6 sm:p-10 lg:p-12 overflow-hidden border border-[#E5E0D8]">
+    <section id="certificado-google" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20 text-white">
+      {/* Container Frame with Certificate Luxury Border */}
+      <div className="relative rounded-3xl p-[1px] bg-gradient-to-b from-[#C9A227]/40 via-white/10 to-transparent shadow-2xl">
+        <div className="relative bg-[#141414] rounded-[23px] p-6 sm:p-10 lg:p-12 overflow-hidden border border-white/5">
           
-          {/* Subtle Guilloche Pattern & Radial Glow Background */}
+          {/* Subtle Radial Glow Background */}
           <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-[#C9A227]/10 rounded-full blur-[100px] pointer-events-none" />
 
           {/* Certificate Header: Google Official Badging + Verification Ribbon */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#E5E0D8] relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10 relative z-10">
             {/* Google Brand Logo & Category */}
             <div className="flex items-center gap-4 text-left">
               {/* Google 4-Color Icon */}
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#F7F3EB] p-2.5 shadow-sm flex items-center justify-center shrink-0 border border-[#E5E0D8]">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#1A1A1A] p-3 shadow-md flex items-center justify-center shrink-0 border border-white/10">
                 <svg className="w-full h-full" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"
@@ -108,32 +104,32 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
 
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-[#5A5A5A]">
+                  <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-[#A0A0A0]">
                     Google Customer Reviews
                   </span>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#1F8A4C]/15 text-[#1F8A4C] text-[10px] font-bold border border-[#1F8A4C]/30">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#1F8A4C]/15 text-[#4ADE80] text-[10px] font-bold border border-[#1F8A4C]/30">
                     <CheckCircle2 className="w-3 h-3" />
                     Verificado Oficial
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#111111]">
+                <h3 className="text-xl sm:text-2xl font-bold font-serif text-white">
                   Certificado de Excelência Máxima
                 </h3>
               </div>
             </div>
 
             {/* Official 5.0 Star Badge */}
-            <div className="flex items-center gap-3 bg-[#F7F3EB] border border-[#E5E0D8] px-5 py-3 rounded-2xl shadow-sm">
+            <div className="flex items-center gap-3 bg-black/60 border border-white/10 px-5 py-3 rounded-2xl shadow-lg">
               <div className="text-right">
                 <div className="flex items-center justify-end gap-1 text-[#C9A227]">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#C9A227] text-[#C9A227]" />
                   ))}
                 </div>
-                <span className="text-[10px] text-[#5A5A5A] font-semibold">Nota Máxima 5.0 / 5.0</span>
+                <span className="text-[10px] text-[#A0A0A0] font-semibold">Nota Máxima 5.0 / 5.0</span>
               </div>
-              <div className="w-[1px] h-8 bg-[#E5E0D8]" />
-              <div className="text-3xl font-black font-serif text-[#C9A227]">
+              <div className="w-[1px] h-8 bg-white/10" />
+              <div className="text-3xl font-black font-serif text-[#C9A227] tabular-nums">
                 5.0
               </div>
             </div>
@@ -145,11 +141,11 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
               <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#C9A227]">
                 Reconhecimento de Reputação & Satisfação
               </span>
-              <h4 className="text-2xl sm:text-3xl font-serif font-bold text-[#111111]">
-                Corretor Daniel Pacheco • {settings.creci || 'CRECI: 38 813'} {settings.cnai ? `• ${settings.cnai}` : '• CNAI: 34 653'}
+              <h4 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+                Corretor Daniel Pacheco · {settings.creci || 'CRECI: 38 813'} {settings.cnai ? `· ${settings.cnai}` : '· CNAI: 34 653'}
               </h4>
-              <p className="text-xs sm:text-sm text-[#5A5A5A] leading-relaxed font-normal">
-                Certificamos que o profissional <strong className="text-[#111111] font-semibold">Daniel Pacheco</strong> mantém 
+              <p className="text-xs sm:text-sm text-[#B0B0B0] leading-relaxed font-normal">
+                Certificamos que o profissional <strong className="text-white font-semibold">Daniel Pacheco</strong> mantém 
                 desempenho exemplar de avaliação com <strong className="text-[#C9A227] font-semibold">100% de satisfação e nota 5.0 estrelas no Google</strong>, 
                 comprovando excelência em assessoria imobiliária, integridade nas transações, conhecimento técnico de obras e dedicação consultiva aos clientes no Sul de Santa Catarina.
               </p>
@@ -157,38 +153,38 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
 
             {/* Micro Badges / Guarantees */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              <div className="p-3 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8] flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-[#1F8A4C] shrink-0" />
-                <span className="text-[11px] font-semibold text-[#111111]">CRECI Regularizado</span>
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#4ADE80] shrink-0" />
+                <span className="text-[11px] font-semibold text-white">CRECI Regularizado</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8] flex items-center gap-2.5">
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5">
                 <ThumbsUp className="w-4 h-4 text-[#C9A227] shrink-0" />
-                <span className="text-[11px] font-semibold text-[#111111]">300+ Negócios</span>
+                <span className="text-[11px] font-semibold text-white tabular-nums">300+ Negócios</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8] flex items-center gap-2.5">
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5">
                 <Star className="w-4 h-4 text-[#C9A227] shrink-0 fill-current" />
-                <span className="text-[11px] font-semibold text-[#111111]">5.0 Estrelas Google</span>
+                <span className="text-[11px] font-semibold text-white">5.0 Estrelas Google</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8] flex items-center gap-2.5">
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5">
                 <Building2 className="w-4 h-4 text-[#C9A227] shrink-0" />
-                <span className="text-[11px] font-semibold text-[#111111]">Construtoras Oficiais</span>
+                <span className="text-[11px] font-semibold text-white">Construtoras Oficiais</span>
               </div>
             </div>
 
             {/* Testimonials Excerpt Grid */}
             <div className="pt-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#5A5A5A]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#A0A0A0]">
                   Depoimentos Recentes Auditados no Google
                 </span>
                 <a
                   href={googleSearchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#C9A227] hover:text-[#111111] flex items-center gap-1 font-semibold transition-colors cursor-pointer"
+                  className="text-xs text-[#C9A227] hover:text-white flex items-center gap-1 font-semibold transition-colors cursor-pointer"
                 >
                   <span>Ver todas no Google</span>
                   <ExternalLink className="w-3 h-3" />
@@ -199,17 +195,17 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
                 {verifiedReviews.map((rev, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-2xl bg-[#F7F3EB] border border-[#E5E0D8] flex flex-col justify-between space-y-3 hover:border-[#C9A227] transition-all"
+                    className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-3 hover:border-[#C9A227]/50 transition-all shadow-md"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-[#C9A227] text-[#0A0A0A] text-xs font-bold flex items-center justify-center">
+                          <div className="w-7 h-7 rounded-full bg-[#C9A227] text-[#0A0A0A] text-xs font-bold flex items-center justify-center font-mono">
                             {rev.initials}
                           </div>
                           <div>
-                            <h5 className="text-xs font-bold text-[#111111]">{rev.author}</h5>
-                            <span className="text-[10px] text-[#5A5A5A]">{rev.date}</span>
+                            <h5 className="text-xs font-bold text-white">{rev.author}</h5>
+                            <span className="text-[10px] text-[#7A7A7A]">{rev.date}</span>
                           </div>
                         </div>
                         <div className="flex text-[#C9A227]">
@@ -218,13 +214,13 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
                           ))}
                         </div>
                       </div>
-                      <p className="text-[11px] text-[#5A5A5A] leading-relaxed italic">
+                      <p className="text-[11px] text-[#A0A0A0] leading-relaxed italic">
                         "{rev.comment}"
                       </p>
                     </div>
 
-                    <div className="text-[10px] text-[#C9A227] font-semibold pt-2 border-t border-[#E5E0D8] flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 text-[#1F8A4C]" />
+                    <div className="text-[10px] text-[#C9A227] font-semibold pt-2 border-t border-white/10 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-[#4ADE80]" />
                       <span>{rev.role}</span>
                     </div>
                   </div>
@@ -234,13 +230,13 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
           </div>
 
           {/* Certificate Footer: Direct Links to Google & Social Presence */}
-          <div className="pt-6 mt-4 border-t border-[#E5E0D8] flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+          <div className="pt-6 mt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
             {/* Left: Security Serial & Official Verification Seal */}
-            <div className="flex items-center gap-3 text-[11px] text-[#5A5A5A] font-mono">
-              <span className="px-2 py-0.5 rounded bg-[#F7F3EB] border border-[#E5E0D8] text-[#111111]">
+            <div className="flex items-center gap-3 text-[11px] text-[#7A7A7A] font-mono">
+              <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white/90">
                 ID: GCP-DP-SC-2026-50V
               </span>
-              <span>• Google Verified Partner Standard</span>
+              <span>· Google Verified Standard</span>
             </div>
 
             {/* Right: Interactive Links (Google, Socials, WhatsApp) */}
@@ -251,10 +247,10 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
                 href={googleSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#0A0A0A] hover:bg-[#222222] text-[#FFFFFF] text-xs font-bold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold flex items-center gap-2 transition-all cursor-pointer border border-white/10"
                 title="Pesquisar Daniel Pacheco no Google"
               >
-                <Search className="w-3.5 h-3.5 text-[#FFFFFF]" />
+                <Search className="w-3.5 h-3.5 text-white" />
                 <span>Ver no Google</span>
                 <ExternalLink className="w-3 h-3 text-white/70" />
               </a>
@@ -265,7 +261,7 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
                 href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#F7F3EB] hover:bg-[#E5E0D8] border border-[#E5E0D8] text-xs font-semibold text-[#111111] hover:text-[#C9A227] flex items-center gap-2 transition-all cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white hover:text-[#C9A227] flex items-center gap-2 transition-all cursor-pointer"
                 title="Instagram Oficial @danielpacheco.imoveis"
               >
                 <Instagram className="w-3.5 h-3.5 text-[#C9A227]" />
@@ -278,7 +274,7 @@ export const GoogleExcellenceCertificate: React.FC<GoogleExcellenceCertificatePr
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#1F8A4C] hover:bg-[#197A42] text-white text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-sm"
+                className="px-4 py-2 rounded-xl bg-[#1F8A4C] hover:bg-[#197A42] text-white text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-md"
                 title="Conversar no WhatsApp"
               >
                 <MessageCircle className="w-3.5 h-3.5 fill-current" />

@@ -31,9 +31,27 @@ export interface Property {
   deliveryYear?: string;
   hasExtendedGallery?: boolean; // Indicador de galeria completa estendida
   totalImagesCount?: number; // Total real de fotos salvas sem limites
+  isArchived?: boolean; // Arquivado / Fora do ar temporariamente
+  isDraft?: boolean; // Rascunho
+  publicationStatus?: 'published' | 'archived' | 'draft';
   createdAt?: number;
   updatedAt?: number;
 }
+
+export const AMREC_CITIES = [
+  'Criciúma',
+  'Balneário Rincão',
+  'Içara',
+  'Cocal do Sul',
+  'Forquilhinha',
+  'Lauro Müller',
+  'Morro da Fumaça',
+  'Nova Veneza',
+  'Orleans',
+  'Siderópolis',
+  'Treviso',
+  'Urussanga'
+] as const;
 
 export interface SiteSettings {
   realtorName: string;
@@ -48,6 +66,7 @@ export interface SiteSettings {
   twitter?: string;
   youtube?: string;
   tiktok?: string;
+  facebookPixelId?: string; // ID do Pixel da Meta / Facebook
   address: string;
   businessHours: string;
   heroHeadline: string;

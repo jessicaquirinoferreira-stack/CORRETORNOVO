@@ -33,42 +33,41 @@ export const AboutRealtorSection: React.FC<AboutRealtorSectionProps> = ({
   );
 
   return (
-    <section id="sobre" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+    <section id="sobre" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20 text-white">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#C9A227]/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#C9A227]/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#C9A227]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#C9A227]/5 rounded-full blur-[90px] pointer-events-none" />
 
-      <div className="relative z-10 bg-[#FFFFFF] border border-[#E5E0D8] rounded-3xl p-6 sm:p-10 lg:p-14 shadow-xl overflow-hidden">
+      <div className="relative z-10 bg-[#141414] border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl overflow-hidden">
         {/* Subtle decorative grid background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#C9A227_1px,transparent_1px)] opacity-[0.04] [background-size:24px_24px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(201,162,39,0.15)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
           {/* Column 1: Realtor High-Quality Portrait with Signature Frame */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="relative group w-full max-w-sm sm:max-w-md">
               {/* Outer Golden Glow Border */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-[#C9A227] via-amber-200 to-[#C9A227] opacity-60 blur-sm group-hover:opacity-90 transition-all duration-700" />
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-[#C9A227] via-amber-200/50 to-[#C9A227] opacity-40 blur-md group-hover:opacity-80 transition-all duration-700" />
 
-              <div className="relative rounded-2xl overflow-hidden bg-[#F7F3EB] border border-[#E5E0D8] shadow-2xl aspect-[3/4] flex items-center justify-center">
+              <div className="relative rounded-2xl overflow-hidden bg-[#1A1A1A] border border-white/10 shadow-2xl aspect-[3/4] flex items-center justify-center">
                 <img
                   src={REALTOR_PHOTO_URL}
                   alt="Corretor de Imóveis Daniel Pacheco"
                   className="w-full h-full object-cover object-top scale-100 group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {
-                    // Fallback if network issue
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800';
                   }}
                 />
 
                 {/* Bottom Shadow Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-85 pointer-events-none" />
 
                 {/* Floating Authority Badge on Photo */}
-                <div className="absolute bottom-4 left-4 right-4 bg-[#0A0A0A]/90 backdrop-blur-md border border-[#C9A227]/40 p-3.5 rounded-xl shadow-xl flex items-center justify-between">
+                <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-md border border-[#C9A227]/40 p-3.5 rounded-xl shadow-xl flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-bold font-serif text-[#FFFFFF]">Daniel Pacheco</h4>
+                    <h4 className="text-sm font-bold font-serif text-white">Daniel Pacheco</h4>
                     <p className="text-[11px] text-[#C9A227] font-semibold">
-                      {settings.creci || 'CRECI: 38 813'} • {settings.cnai || 'CNAI: 34 653'}
+                      {settings.creci || 'CRECI: 38 813'} · {settings.cnai || 'CNAI: 34 653'}
                     </p>
                   </div>
                   <div className="flex items-center gap-1 bg-[#C9A227]/10 border border-[#C9A227]/30 px-2.5 py-1 rounded-full text-[10px] font-bold text-[#C9A227]">
@@ -81,13 +80,13 @@ export const AboutRealtorSection: React.FC<AboutRealtorSectionProps> = ({
 
             {/* Quick Metrics Bar Under Photo */}
             <div className="grid grid-cols-2 gap-3 w-full max-w-sm sm:max-w-md mt-4">
-              <div className="p-3.5 rounded-2xl bg-[#F7F3EB] border border-[#E5E0D8] text-center">
-                <span className="text-xl sm:text-2xl font-bold font-serif text-[#C9A227] block">8+ Anos</span>
-                <span className="text-[10px] text-[#5A5A5A] uppercase tracking-wider font-semibold">No Mercado</span>
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
+                <span className="text-xl sm:text-2xl font-bold font-serif text-[#C9A227] block tabular-nums">8+ Anos</span>
+                <span className="text-[10px] text-[#A0A0A0] uppercase tracking-wider font-semibold">No Mercado</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-[#F7F3EB] border border-[#E5E0D8] text-center">
-                <span className="text-xl sm:text-2xl font-bold font-serif text-[#111111] block">300+</span>
-                <span className="text-[10px] text-[#5A5A5A] uppercase tracking-wider font-semibold">Negócios Realizados</span>
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
+                <span className="text-xl sm:text-2xl font-bold font-serif text-white block tabular-nums">300+</span>
+                <span className="text-[10px] text-[#A0A0A0] uppercase tracking-wider font-semibold">Negócios Realizados</span>
               </div>
             </div>
           </div>
@@ -95,84 +94,83 @@ export const AboutRealtorSection: React.FC<AboutRealtorSectionProps> = ({
           {/* Column 2: Biography Text & Personal Commitment */}
           <div className="lg:col-span-7 space-y-6 text-left">
             {/* Header Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F7F3EB] border border-[#E5E0D8] text-xs text-[#C9A227]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-[#C9A227]">
               <Sparkles className="w-3.5 h-3.5 text-[#C9A227]" />
               <span className="font-semibold uppercase tracking-wider">Trajetória & Autoridade</span>
             </div>
 
             {/* Title */}
             <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif-luxury text-[#111111] leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif-luxury text-white leading-tight">
                 Sobre o Corretor <br />
-                <span className="italic text-[#C9A227]">Daniel Pacheco</span>
+                <span className="italic gold-gradient-text">Daniel Pacheco</span>
               </h2>
               <div className="h-[2px] w-20 bg-gradient-to-r from-[#C9A227] to-transparent mt-3" />
             </div>
 
             {/* Authentic Bio Text */}
-            <div className="space-y-4 text-sm sm:text-base text-[#5A5A5A] font-normal leading-relaxed">
-              <p className="bg-[#F7F3EB] border-l-3 border-[#C9A227] pl-4 py-3 rounded-r-xl text-[#111111]">
-                Eu me chamo <strong className="text-[#111111] font-semibold">Daniel Pacheco</strong>, sou corretor de imóveis há aproximadamente <span className="text-[#C9A227] font-semibold">oito anos</span>, acompanhando de perto a realização de muitos sonhos. Iniciei minha trajetória como colaborador de uma construtora, onde conheci o mercado imobiliário e, desde então, me apaixonei por esse segmento.
+            <div className="space-y-4 text-sm sm:text-base text-[#B0B0B0] font-normal leading-relaxed">
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-[#E0E0E0]">
+                Eu me chamo <strong className="text-white font-semibold">Daniel Pacheco</strong>, sou corretor de imóveis há aproximadamente <span className="text-[#C9A227] font-semibold">oito anos</span>, acompanhando de perto a realização de muitos sonhos. Iniciei minha trajetória como colaborador de construtora, onde conheci a fundo os bastidores do mercado imobiliário e me apaixonei pelo segmento.
+              </div>
+
+              <p>
+                Atualmente, minha principal preocupação é atender cada cliente com <strong className="text-white font-semibold">ética, profissionalismo e comprometimento</strong>. Já realizei <span className="text-[#C9A227] font-semibold">mais de 300 negócios</span> e mantenho uma excelente média de avaliações 5 estrelas no Google, resultado do cuidado personalizado em cada negociação.
               </p>
 
               <p>
-                Atualmente, minha principal preocupação é atender cada cliente com <strong className="text-[#111111] font-semibold">ética, profissionalismo e comprometimento</strong>. Já realizei <span className="text-[#C9A227] font-semibold">mais de 300 negócios</span> e mantenho uma excelente média de avaliações no Google, resultado do cuidado em cada atendimento.
-              </p>
-
-              <p className="text-[#111111] font-medium">
-                Estou apto a auxiliar e realizar o sonho dos meus clientes com dedicação e responsabilidade.
+                Ofereço assessoria completa na compra, venda e investimentos, além de avaliação imobiliária certificada como perito credenciado pelo <strong className="text-white font-semibold">CNAI 34.653</strong>.
               </p>
             </div>
 
-            {/* Pillars / Distinctions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8]">
-                <div className="p-2 rounded-lg bg-[#C9A227]/10 text-[#C9A227] shrink-0 mt-0.5">
-                  <Star className="w-4 h-4 fill-current" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#111111]">Excelência no Google</h4>
-                  <p className="text-[11px] text-[#5A5A5A] leading-tight mt-0.5">Alta taxa de satisfação e depoimentos positivos de compradores.</p>
-                </div>
+            {/* Core Values Checklist */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="flex items-center gap-2.5 text-xs text-[#D0D0D0]">
+                <CheckCircle2 className="w-4 h-4 text-[#4ADE80] shrink-0" />
+                <span>Especialista em plantas e negociação direta</span>
               </div>
-
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#F7F3EB] border border-[#E5E0D8]">
-                <div className="p-2 rounded-lg bg-[#C9A227]/10 text-[#C9A227] shrink-0 mt-0.5">
-                  <Building2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#111111]">Origem em Construtora</h4>
-                  <p className="text-[11px] text-[#5A5A5A] leading-tight mt-0.5">Domínio técnico de obras, plantas, acabamentos e negociação direta.</p>
-                </div>
+              <div className="flex items-center gap-2.5 text-xs text-[#D0D0D0]">
+                <CheckCircle2 className="w-4 h-4 text-[#4ADE80] shrink-0" />
+                <span>Perito Avaliador Imobiliário (CNAI 34.653)</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-[#D0D0D0]">
+                <CheckCircle2 className="w-4 h-4 text-[#4ADE80] shrink-0" />
+                <span>Atendimento presencial em Criciúma e Rincão</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-[#D0D0D0]">
+                <CheckCircle2 className="w-4 h-4 text-[#4ADE80] shrink-0" />
+                <span>Auditoria jurídica de R.I. e contratos</span>
               </div>
             </div>
-
-            {/* Realtor Official Networks */}
-            <SocialMediaBar settings={settings} variant="about" />
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-4">
+            <div className="pt-4 flex flex-wrap items-center gap-4 border-t border-white/10">
               <a
-                id="about-realtor-whatsapp-btn"
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 rounded-xl bg-[#1F8A4C] hover:bg-[#197A42] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-md transition-all cursor-pointer"
+                className="px-6 py-3.5 rounded-xl bg-[#1F8A4C] hover:bg-[#197A42] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 fill-current text-white" />
-                <span>Conversar com Daniel Pacheco</span>
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>Iniciar Conversa com Daniel</span>
               </a>
 
               {onOpenCuratedModal && (
                 <button
-                  id="about-realtor-curated-btn"
                   onClick={onOpenCuratedModal}
-                  className="px-6 py-3.5 rounded-xl bg-[#F7F3EB] hover:bg-[#E5E0D8] border border-[#E5E0D8] text-xs font-semibold text-[#111111] hover:text-[#C9A227] transition-all flex items-center gap-2 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-semibold text-white hover:text-[#C9A227] transition-all cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-[#C9A227]" />
-                  <span>Solicitar Consultoria VIP</span>
+                  Solicitar Consultoria VIP
                 </button>
               )}
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-2">
+              <span className="text-[11px] text-[#7A7A7A] uppercase tracking-wider block mb-2 font-medium">
+                Redes Oficiais:
+              </span>
+              <SocialMediaBar settings={settings} />
             </div>
           </div>
         </div>

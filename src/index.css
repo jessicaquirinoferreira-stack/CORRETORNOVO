@@ -1,21 +1,43 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #F7F3EB;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FBF9F5;
     color: #111111;
+    overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-serif, .font-serif-luxury {
+  h1, h2, h3, h4, .font-serif, .font-serif-luxury {
     font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Tabular figures for prices, areas, and numerical specs */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* Custom scrollbar */
+/* Custom Ultra-Smooth Scrollbar (Light Luxury) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EFE6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D1C5;
+  border-radius: 9999px;
+  border: 2px solid #F4EFE6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A227;
 }
 
 /* High definition image rendering and smooth GPU decoding */
@@ -24,23 +46,32 @@ img {
   backface-visibility: hidden;
 }
 
+/* Smooth animations */
 @keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
-::-webkit-scrollbar-track {
-  background: #F7F3EB;
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #E5E0D8;
-  border-radius: 4px;
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #C9A227;
+.animate-shimmer {
+  animation: shimmer 1.8s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
 }
 
 /* 3D and Luxury Effects */
@@ -56,23 +87,72 @@ img {
   backface-visibility: hidden;
 }
 
+/* Luxury Gold Gradients & Glows (Light Theme) */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #111111 0%, #C9A227 60%, #B8931F 100%);
+  background: linear-gradient(135deg, #111111 0%, #B8860B 45%, #C9A227 75%, #8B6508 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-border-glow {
-  box-shadow: 0 0 25px -5px rgba(201, 162, 39, 0.2);
+  box-shadow: 0 4px 20px -2px rgba(201, 162, 39, 0.2);
+}
+
+.luxury-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 224, 216, 0.85);
+}
+
+.luxury-glass-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 224, 216, 0.9);
 }
 
 .luxury-card-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .luxury-card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08), 0 0 15px -3px rgba(201, 162, 39, 0.15);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 20px -2px rgba(201, 162, 39, 0.15);
+}
+
+/* Modern Spotlight Effect for Cards (mouse tracking) */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    rgba(201, 162, 39, 0.12),
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Subtle noise texture background */
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Property, SiteSettings, LandingPage } from './types';
 import { DEFAULT_SETTINGS } from './data/initialSettings';
 import { INITIAL_PROPERTIES } from './data/initialProperties';
+import { initMetaPixel, trackMetaPixelEvent } from './utils/metaPixel';
 import { 
   initFirebaseData, 
   subscribeProperties, 
@@ -16,6 +17,7 @@ import {
   logoutAdmin
 } from './firebase/firebaseService';
 import { generateSmartLandingPage } from './utils/landingPageGenerator';
+import { usePropertyFavorites } from './utils/usePropertyInteractions';
 
 // Layout Components
 import { Header } from './components/Header';
@@ -25,6 +27,8 @@ import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { AIAssistantFloating } from './components/AIAssistantFloating';
 import { CookieBanner } from './components/CookieBanner';
 import { CinematicIntro } from './components/CinematicIntro';
+import { PropertyCompareDrawer } from './components/PropertyCompareDrawer';
+import { FavoritesModal } from './components/FavoritesModal';
 import { AnimatePresence } from 'motion/react';
 
 // Pages
@@ -55,6 +59,35 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState<boolean>(() => getIsAdminCached());
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
   const [isCuratedModalOpen, setIsCuratedModalOpen] = useState<boolean>(false);
+
+  // Modern Interactive Skills: Favorites & Comparison
+  const { favoriteIds, toggleFavorite, isFavorite } = usePropertyFavorites();
+  const [compareList, setCompareList] = useState<Property[]>([]);
+  const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState<boolean>(false);
+
+  const favoriteProperties = properties.filter((p) => favoriteIds.includes(p.id));
+
+  const handleToggleCompare = (property: Property) => {
+    setCompareList((prev) => {
+      const exists = prev.some((p) => p.id === property.id);
+      if (exists) {
+        return prev.filter((p) => p.id !== property.id);
+      }
+      if (prev.length >= 3) {
+        alert('Você pode comparar no máximo 3 imóveis simultaneamente.');
+        return prev;
+      }
+      return [...prev, property];
+    });
+  };
+
+  const handleRemoveFromCompare = (propertyId: string) => {
+    setCompareList((prev) => prev.filter((p) => p.id !== propertyId));
+  };
+
+  const handleClearCompare = () => {
+    setCompareList([]);
+  };
 
   // Keep selectedProperty live and up-to-date when properties state changes
   useEffect(() => {
@@ -180,25 +213,24 @@ export default function App() {
           cleanSlug.toLowerCase().includes(p.id.toLowerCase())
         );
         if (matchedProp) {
-          foundLP = generateSmartLandingPage(matchedProp, 'investidor', 'luxury-dark');
+          foundLP = generateSmartLandingPage(matchedProp, settings);
         }
       }
 
       if (foundLP) {
         setActiveLandingPage(foundLP);
         setCurrentRoute('landing-page');
-        return;
       }
     };
 
     handleUrlRoute();
-    window.addEventListener('hashchange', handleUrlRoute);
     window.addEventListener('popstate', handleUrlRoute);
+    window.addEventListener('hashchange', handleUrlRoute);
     return () => {
-      window.removeEventListener('hashchange', handleUrlRoute);
       window.removeEventListener('popstate', handleUrlRoute);
+      window.removeEventListener('hashchange', handleUrlRoute);
     };
-  }, [properties, landingPages]);
+  }, [properties, landingPages, settings]);
 
   // Navigate helper
   const navigate = (route: string) => {
@@ -207,12 +239,36 @@ export default function App() {
     window.location.hash = route;
   };
 
+  // Initialize Meta Pixel whenever facebookPixelId is provided/updated
+  useEffect(() => {
+    if (settings.facebookPixelId) {
+      initMetaPixel(settings.facebookPixelId);
+    }
+  }, [settings.facebookPixelId]);
+
+  // Filter properties: public visitors only see published properties
+  // (Archived / Draft properties are hidden temporarily from the public site)
+  const publicProperties = useMemo(() => {
+    return properties.filter(
+      (p) => !p.isArchived && !p.isDraft && p.publicationStatus !== 'archived'
+    );
+  }, [properties]);
+
   // Property detail select helper
   const handleSelectProperty = (property: Property) => {
     setSelectedProperty(property);
     setCurrentRoute('property-detail');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     window.location.hash = `imovel-${property.code}`;
+
+    // Meta Pixel ViewContent event
+    trackMetaPixelEvent('ViewContent', {
+      content_name: property.title,
+      content_category: property.type,
+      content_ids: [property.code],
+      value: property.price || 0,
+      currency: 'BRL',
+    });
   };
 
   // Dedicated Landing Page Standalone Render (No distracting navigation, maximum conversion)
@@ -232,66 +288,88 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F3EB] text-[#111111] flex flex-col font-sans selection:bg-[#C9A227]/30 selection:text-[#111111]">
+    <div className="min-h-screen bg-[#FBF9F5] text-[#111111] flex flex-col font-sans selection:bg-[#C9A227]/25 selection:text-[#111111]">
       {/* Header */}
       <Header
         settings={settings}
         currentRoute={currentRoute}
         navigate={navigate}
         onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+        favoritesCount={favoriteIds.length}
+        onOpenFavorites={() => setIsFavoritesModalOpen(true)}
       />
 
       {/* Main Content Area */}
       <main className="flex-1">
         {currentRoute === 'home' && (
           <HomePage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             navigate={navigate}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         )}
 
         {currentRoute === 'portfolio' && (
           <PortfolioPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         )}
 
         {currentRoute === 'na-planta' && (
           <NaPlantaPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         )}
 
         {currentRoute === 'prontos' && (
           <ImoveisProntosPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         )}
 
         {(currentRoute === 'terrenos' || currentRoute === 'loteamentos') && (
           <TerrenosPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         )}
 
         {currentRoute === 'cidades' && (
           <CidadesPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             onSelectProperty={handleSelectProperty}
             onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
@@ -320,7 +398,7 @@ export default function App() {
         {currentRoute === 'property-detail' && selectedProperty && (
           <PropertyDetailPage
             property={selectedProperty}
-            allProperties={properties}
+            allProperties={publicProperties}
             settings={settings}
             onBack={() => navigate('portfolio')}
             onSelectProperty={handleSelectProperty}
@@ -363,7 +441,7 @@ export default function App() {
 
         {(currentRoute === 'sitemap' || currentRoute === 'mapa-do-site') && (
           <SiteMapPage
-            properties={properties}
+            properties={publicProperties}
             settings={settings}
             navigate={navigate}
             onSelectProperty={handleSelectProperty}
@@ -378,6 +456,28 @@ export default function App() {
         isAdmin={isAdmin}
         onLogoutAdmin={logoutAdmin}
         onOpenCuratedModal={() => setIsCuratedModalOpen(true)}
+      />
+
+      {/* Interactive Property Comparison Bottom Dock */}
+      <PropertyCompareDrawer
+        compareList={compareList}
+        onRemoveFromCompare={handleRemoveFromCompare}
+        onClearCompare={handleClearCompare}
+        onSelectProperty={handleSelectProperty}
+        settings={settings}
+      />
+
+      {/* Favorites Modal Dialog */}
+      <FavoritesModal
+        isOpen={isFavoritesModalOpen}
+        onClose={() => setIsFavoritesModalOpen(false)}
+        favorites={favoriteProperties}
+        onRemoveFavorite={toggleFavorite}
+        onClearFavorites={() => {
+          favoriteIds.forEach((id) => toggleFavorite(id));
+        }}
+        onSelectProperty={handleSelectProperty}
+        settings={settings}
       />
 
       {/* Curated Lead Form Modal */}
